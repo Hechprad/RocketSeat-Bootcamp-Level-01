@@ -8,12 +8,13 @@ app.use(express.json());
 const projects = [];
 
 app.get("/projects", (request, response) => {
-  // const { title, name } = request.query;
+  const { title } = request.query;
 
-  // console.log(title);
-  // console.log(name);
+  const results = title
+    ? projects.filter((project) => project.title.includes(title))
+    : projects;
 
-  return response.json(projects);
+  return response.json(results);
 });
 
 app.post("/projects", (request, response) => {
